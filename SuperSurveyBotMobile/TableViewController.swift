@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Socket
+import Foundation
+import Dispatch
 class TableViewController: UITableViewController {
 
     @IBOutlet weak var questionView: UIView!
@@ -49,31 +52,33 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var data = Data()
         var isConnected: Bool = false
-        let local = "http://localhost:9000"
-        let url = URL(string: local)
         let jsonObject: [String: Any] = [
-            "DATA_TYPE":"USER_ID", "USER_ID":userID, "DEVICE_TYPE":"MOBILE"
+            "DATA_TYPE":"USER_ID",
+            "USER_ID":userID,
+            "DEVICE_TYPE":"MOBILE"
         ]
-        
         var valid = try? JSONSerialization.data(withJSONObject: jsonObject)
-        valid = pack("!I", [valid?.count])
-        while isConnected == false{
-            var request = URLRequest(url: url!)
-            request.httpMethod = "POST"
-            request.httpBody = valid
-            let task = URLSession.shared.dataTask(with: request) {
-                data, response, error in guard let data = data, error == nil else{
-                    print(error?.localizedDescription ?? "No Data")
-                    return
-                }
-                let responseJson = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJson = responseJson as? [String: Any]{
-                    print(responseJson)
-                }
-            }
-            task.resume()
+        let valid_packed = pack("!I", [valid?.count as Any])
+        let encoded = "\(String(data: valid_packed, encoding: .ascii)!)\(String(data: valid!, encoding: .ascii)!)"
+        let signature = try? Socket.Signature(protocolFamily: .inet, socketType: .stream, proto: .tcp, hostname: "localhost", port: 9000)!
+        let socket = try? Socket.create()
+        
+        defer {
+            socket?.close()
         }
+        
+        try? socket?.connect(using: signature!)
+        if !(socket?.isConnected)!{
+            print("Can't connect")
+        }
+        
+        print("Connected")
+        
+        try? socket!.write(from: encoded)
+        let response = try? socket?.read(into: &data)
+        print(response)
         getData()
         tableView.estimatedRowHeight = 90
         tableView.rowHeight = UITableView.automaticDimension

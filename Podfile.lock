@@ -1,0 +1,20 @@
+PODS:
+  - BlueSocket (1.0.44)
+  - SwiftSocket (2.0.2)
+
+DEPENDENCIES:
+  - BlueSocket
+  - SwiftSocket
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - BlueSocket
+    - SwiftSocket
+
+SPEC CHECKSUMS:
+  BlueSocket: 4812c58c34e6d667bc43736ec9c855cf408b98f0
+  SwiftSocket: 6f4c9c63fbc5c1d61188936bb3c599fd546f40ae
+
+PODFILE CHECKSUM: 692787bf051ea39d2eaeedd87d8940aa4b2b709e
+
+COCOAPODS: 1.6.0
