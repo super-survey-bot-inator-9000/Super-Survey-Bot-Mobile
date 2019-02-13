@@ -55,7 +55,9 @@ class TableViewController: UITableViewController {
         let jsonObject: [String: Any] = [
             "DATA_TYPE":"USER_ID", "USER_ID":userID, "DEVICE_TYPE":"MOBILE"
         ]
-        let valid = try? JSONSerialization.data(withJSONObject: jsonObject)
+        
+        var valid = try? JSONSerialization.data(withJSONObject: jsonObject)
+        valid = pack("!I", [valid?.count])
         while isConnected == false{
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"

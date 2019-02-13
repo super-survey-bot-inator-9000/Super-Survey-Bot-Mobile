@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7973B0712213C0D600D09204 /* BinUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7973B0702213C0D600D09204 /* BinUtils.swift */; };
 		79FFF1C72210A5040048ADC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFF1C62210A5040048ADC6 /* AppDelegate.swift */; };
 		79FFF1CC2210A5040048ADC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FFF1CA2210A5040048ADC6 /* Main.storyboard */; };
 		79FFF1CE2210A5050048ADC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79FFF1CD2210A5050048ADC6 /* Assets.xcassets */; };
@@ -107,6 +108,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7973B0702213C0D600D09204 /* BinUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinUtils.swift; path = "../../../../Downloads/BinUtils-master/Sources/BinUtils.swift"; sourceTree = "<group>"; };
 		79FFF1C32210A5040048ADC6 /* SuperSurveyBotMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSurveyBotMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FFF1C62210A5040048ADC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79FFF1CB2210A5040048ADC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				79FFF1F82210A8270048ADC6 /* TableViewController.swift */,
 				79FFF1FA2210B0200048ADC6 /* MultipleSelectTableViewCell.swift */,
+				7973B0702213C0D600D09204 /* BinUtils.swift */,
 				79FFF1C62210A5040048ADC6 /* AppDelegate.swift */,
 				79FFF1CA2210A5040048ADC6 /* Main.storyboard */,
 				79FFF1CD2210A5050048ADC6 /* Assets.xcassets */,
@@ -411,6 +414,7 @@
 				79FFF1C72210A5040048ADC6 /* AppDelegate.swift in Sources */,
 				79FFF1F92210A8270048ADC6 /* TableViewController.swift in Sources */,
 				79FFF1FB2210B0200048ADC6 /* MultipleSelectTableViewCell.swift in Sources */,
+				7973B0712213C0D600D09204 /* BinUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
