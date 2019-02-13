@@ -13,29 +13,67 @@
         <scene sceneID="TUi-EQ-F5V">
             <objects>
                 <tableViewController id="Uc1-gW-nwG" customClass="TableViewController" customModule="SuperSurveyBotMobile" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IVD-Fu-anP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IVD-Fu-anP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="8Md-X7-LX7">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9F-zE-Nqy">
+                                    <rect key="frame" x="166" y="12" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="C9F-zE-Nqy" firstAttribute="centerY" secondItem="8Md-X7-LX7" secondAttribute="centerY" id="XG0-QA-ccd"/>
+                                <constraint firstItem="C9F-zE-Nqy" firstAttribute="centerX" secondItem="8Md-X7-LX7" secondAttribute="centerX" id="oiG-80-2ia"/>
+                            </constraints>
                         </view>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="t1H-C3-Ts1">
-                            <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Select"/>
                             <connections>
                                 <action selector="SendData:" destination="Uc1-gW-nwG" eventType="touchUpInside" id="otC-b5-Azw"/>
                             </connections>
                         </button>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AnswerCell" id="6cJ-cv-uZr" customClass="CustomTableViewCell" customModule="SuperSurveyBotMobile" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6cJ-cv-uZr" id="iFT-Xl-VMX">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCx-XN-bks">
+                                            <rect key="frame" x="166" y="12" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="uCx-XN-bks" firstAttribute="centerX" secondItem="iFT-Xl-VMX" secondAttribute="centerX" id="FGM-Uc-Hww"/>
+                                        <constraint firstItem="uCx-XN-bks" firstAttribute="centerY" secondItem="iFT-Xl-VMX" secondAttribute="centerY" id="UEK-ww-zF6"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="answerLabel" destination="uCx-XN-bks" id="2dJ-xR-2yb"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Uc1-gW-nwG" id="AAs-Bo-7aP"/>
                             <outlet property="delegate" destination="Uc1-gW-nwG" id="ZHl-Ws-SRI"/>
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="questionLabel" destination="C9F-zE-Nqy" id="32C-ja-wlm"/>
                         <outlet property="questionView" destination="8Md-X7-LX7" id="MEa-3u-LDP"/>
                         <outlet property="selectButton" destination="t1H-C3-Ts1" id="xDJ-GV-qp8"/>
                     </connections>

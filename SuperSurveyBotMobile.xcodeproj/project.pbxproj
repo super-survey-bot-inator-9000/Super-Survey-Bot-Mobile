@@ -11,6 +11,7 @@
 		4FAB418C99701EB45B0DBC83 /* Pods_SuperSurveyBotMobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F21C7BFF4976C8DFA54BC9E /* Pods_SuperSurveyBotMobileUITests.framework */; };
 		57618684ED894A4559B435A0 /* Pods_SuperSurveyBotMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8619647726C13948130F03A /* Pods_SuperSurveyBotMobile.framework */; };
 		7973B0712213C0D600D09204 /* BinUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7973B0702213C0D600D09204 /* BinUtils.swift */; };
+		7973B0762214230400D09204 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7973B0752214230400D09204 /* CustomTableViewCell.swift */; };
 		79FFF1C72210A5040048ADC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFF1C62210A5040048ADC6 /* AppDelegate.swift */; };
 		79FFF1CC2210A5040048ADC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FFF1CA2210A5040048ADC6 /* Main.storyboard */; };
 		79FFF1CE2210A5050048ADC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79FFF1CD2210A5050048ADC6 /* Assets.xcassets */; };
@@ -115,6 +116,7 @@
 		353A5CD6AA386CC435534F95 /* Pods-SuperSurveyBotMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperSurveyBotMobile.release.xcconfig"; path = "Target Support Files/Pods-SuperSurveyBotMobile/Pods-SuperSurveyBotMobile.release.xcconfig"; sourceTree = "<group>"; };
 		6F21C7BFF4976C8DFA54BC9E /* Pods_SuperSurveyBotMobileUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperSurveyBotMobileUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7973B0702213C0D600D09204 /* BinUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinUtils.swift; path = "../../../../Downloads/BinUtils-master/Sources/BinUtils.swift"; sourceTree = "<group>"; };
+		7973B0752214230400D09204 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		79FFF1C32210A5040048ADC6 /* SuperSurveyBotMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSurveyBotMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FFF1C62210A5040048ADC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79FFF1CB2210A5040048ADC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				79FFF1F82210A8270048ADC6 /* TableViewController.swift */,
+				7973B0752214230400D09204 /* CustomTableViewCell.swift */,
 				79FFF1FA2210B0200048ADC6 /* MultipleSelectTableViewCell.swift */,
 				7973B0702213C0D600D09204 /* BinUtils.swift */,
 				79FFF1C62210A5040048ADC6 /* AppDelegate.swift */,
@@ -257,7 +260,6 @@
 				275039A6B086621AAAA79BDF /* Pods-SuperSurveyBotMobileUITests.debug.xcconfig */,
 				F2229DF11BDC72850A4EEAC1 /* Pods-SuperSurveyBotMobileUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -550,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79FFF1C72210A5040048ADC6 /* AppDelegate.swift in Sources */,
+				7973B0762214230400D09204 /* CustomTableViewCell.swift in Sources */,
 				79FFF1F92210A8270048ADC6 /* TableViewController.swift in Sources */,
 				79FFF1FB2210B0200048ADC6 /* MultipleSelectTableViewCell.swift in Sources */,
 				7973B0712213C0D600D09204 /* BinUtils.swift in Sources */,

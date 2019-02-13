@@ -12,6 +12,7 @@ import Foundation
 import Dispatch
 class TableViewController: UITableViewController {
 
+    @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var questionView: UIView!
     @IBOutlet weak var selectButton: UIButton!
     var userID = "0"
@@ -20,6 +21,8 @@ class TableViewController: UITableViewController {
     var answerValues: [String] = []
     var questionType: String = ""
     var selectedAnswers: [Int] = []
+    let signature = try? Socket.Signature(protocolFamily: .inet, socketType: .stream, proto: .tcp, hostname: "localhost", port: 9000)!
+    let socket = try? Socket.create()
     
     @IBAction func SendData(_ sender: UIButton) {
         var values: String = ""
@@ -36,18 +39,67 @@ class TableViewController: UITableViewController {
             "ANSWER_LABELS": [answerLabels]
         ]
         
-        let valid = JSONSerialization.isValidJSONObject(jsonObject)
+        var valid = try? JSONSerialization.data(withJSONObject: jsonObject)
+        let valid_packed = pack("!I", [valid?.count as Any])
+        let encoded = "\(String(data: valid_packed, encoding: .ascii)!)\(String(data: valid!, encoding: .ascii)!)"
         
+        do {
+            try socket!.write(from: encoded)
+        } catch {
+            print("DAtA SEND ERROR")
+            print(error.localizedDescription)
+        }
         
-        //Send Json
         getData()
         self.tableView.reloadData()
     }
     
     func getData() {
-        //do url
+        answers = []
+        answerValues = []
+        selectedAnswers = []
+        var data = Data()
+        let jsonObject: [String: Any] = [
+            "DATA_TYPE": "QUESTION_REQUEST"]
+        var valid = try? JSONSerialization.data(withJSONObject: jsonObject)
+        let valid_packed = pack("!I", [valid?.count as Any])
+        let encoded = "\(String(data: valid_packed, encoding: .ascii)!)\(String(data: valid!, encoding: .ascii)!)"
         
-        //URLSession.shared.dataTask(with: (url as? URL)!, completionHandler: {(data, response, error) -> Void in})
+        print("IN GETDATA")
+        
+        do {
+            print(encoded)
+            try socket?.write(from: encoded)
+        } catch {
+            print("QUESTION REQUEST ERROR")
+            print(error.localizedDescription)
+        }
+        
+        print("WRItE COMPLETE")
+        
+        data.count = 0
+        try? socket?.read(into: &data)
+        
+        if let response_len = try? unpack("!I", data[0..<4]) {
+            let data_len = response_len[0]
+            data = data[4..<data_len + 4]
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
+            question = jsonData??["QUESTION"] as! String
+            questionType = jsonData??["TYPE"] as! String
+            
+            let answerArray = jsonData??["ANSWERS"] as! [Any]
+            
+            for answer in answerArray {
+                if let answer = answer as? [String: String] {
+                    if answer["DATA_VALUE"] != "<null>" {
+                        answers.append(answer["TEXT"]!)
+                        answerValues.append(answer["DATA_VALUE"]!)
+                    }
+                }
+            }
+        }
+        questionLabel.text = question
     }
     
     override func viewDidLoad() {
@@ -62,12 +114,6 @@ class TableViewController: UITableViewController {
         var valid = try? JSONSerialization.data(withJSONObject: jsonObject)
         let valid_packed = pack("!I", [valid?.count as Any])
         let encoded = "\(String(data: valid_packed, encoding: .ascii)!)\(String(data: valid!, encoding: .ascii)!)"
-        let signature = try? Socket.Signature(protocolFamily: .inet, socketType: .stream, proto: .tcp, hostname: "localhost", port: 9000)!
-        let socket = try? Socket.create()
-        
-        defer {
-            socket?.close()
-        }
         
         try? socket?.connect(using: signature!)
         if !(socket?.isConnected)!{
@@ -77,13 +123,20 @@ class TableViewController: UITableViewController {
         print("Connected")
         
         try? socket!.write(from: encoded)
-        let response = try? socket?.read(into: &data)
-        print(response)
+        data.count = 0
+        try? socket?.read(into: &data)
+
+        if let response_len = try? unpack("!I", data[0..<4]) {
+            let data_len = response_len[0]
+            data = data[4..<data_len + 4]
+            print(String(decoding: data, as: UTF8.self))
+        }
+        
         getData()
         tableView.estimatedRowHeight = 90
         tableView.rowHeight = UITableView.automaticDimension
         
-        if questionType == "checkbox" {
+        if questionType == "CHECKBOX" {
             self.tableView.allowsMultipleSelection = true
             self.tableView.allowsMultipleSelectionDuringEditing = true
         }
@@ -107,18 +160,21 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if questionType == "checkbox"{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell",
-                                                     for: indexPath) as? MultipleSelectTableViewCell
+        let cellIdentifier = "AnswerCell"
+        if questionType == "CHECKBOX"{
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
+                                                        for: indexPath) as? CustomTableViewCell
+            cell?.answerLabel.text = answers[indexPath.row]
             return cell!
+            
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(self.selectedAnswers[indexPath.row])
+        selectedAnswers.append(indexPath.row)
     }
     /*
     // Override to support conditional editing of the table view.
