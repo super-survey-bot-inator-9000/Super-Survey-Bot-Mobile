@@ -54,6 +54,23 @@ class TableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    func showInputDialog() {
+        let alert = UIAlertController(title: "User ID", message: "Please Enter User ID", preferredStyle: .alert)
+        
+        alert.addTextField { (textField) -> Void in
+            textField.placeholder = "User ID"
+            textField.isSecureTextEntry = true
+        }
+        
+        let alertAction = UIAlertAction(title: "Enter", style: .default) { (alertAction) -> Void in
+            self.userID = (alert.textFields![0] as UITextField).text! as String
+            self.connect()
+        }
+        
+        alert.addAction(alertAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func getData() {
         answers = []
         answerValues = []
@@ -102,8 +119,7 @@ class TableViewController: UITableViewController {
         questionLabel.text = question
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func connect(){
         var data = Data()
         var isConnected: Bool = false
         let jsonObject: [String: Any] = [
@@ -125,7 +141,7 @@ class TableViewController: UITableViewController {
         try? socket!.write(from: encoded)
         data.count = 0
         try? socket?.read(into: &data)
-
+        
         if let response_len = try? unpack("!I", data[0..<4]) {
             let data_len = response_len[0]
             data = data[4..<data_len + 4]
@@ -144,7 +160,11 @@ class TableViewController: UITableViewController {
             self.tableView.allowsMultipleSelection = false
             self.tableView.allowsMultipleSelectionDuringEditing = false
         }
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showInputDialog()
     }
 
     // MARK: - Table view data source

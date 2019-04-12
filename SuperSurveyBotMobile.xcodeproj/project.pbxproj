@@ -115,6 +115,7 @@
 		275039A6B086621AAAA79BDF /* Pods-SuperSurveyBotMobileUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperSurveyBotMobileUITests.debug.xcconfig"; path = "Target Support Files/Pods-SuperSurveyBotMobileUITests/Pods-SuperSurveyBotMobileUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		353A5CD6AA386CC435534F95 /* Pods-SuperSurveyBotMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperSurveyBotMobile.release.xcconfig"; path = "Target Support Files/Pods-SuperSurveyBotMobile/Pods-SuperSurveyBotMobile.release.xcconfig"; sourceTree = "<group>"; };
 		6F21C7BFF4976C8DFA54BC9E /* Pods_SuperSurveyBotMobileUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperSurveyBotMobileUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		793BBF0322413A1B00213AD8 /* SuperSurveyBotMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperSurveyBotMobile.entitlements; sourceTree = "<group>"; };
 		7973B0702213C0D600D09204 /* BinUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinUtils.swift; path = "../../../../Downloads/BinUtils-master/Sources/BinUtils.swift"; sourceTree = "<group>"; };
 		7973B0752214230400D09204 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		79FFF1C32210A5040048ADC6 /* SuperSurveyBotMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSurveyBotMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +206,7 @@
 		79FFF1C52210A5040048ADC6 /* SuperSurveyBotMobile */ = {
 			isa = PBXGroup;
 			children = (
+				793BBF0322413A1B00213AD8 /* SuperSurveyBotMobile.entitlements */,
 				79FFF1F82210A8270048ADC6 /* TableViewController.swift */,
 				7973B0752214230400D09204 /* CustomTableViewCell.swift */,
 				79FFF1FA2210B0200048ADC6 /* MultipleSelectTableViewCell.swift */,
@@ -337,6 +339,11 @@
 				TargetAttributes = {
 					79FFF1C22210A5040048ADC6 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					79FFF1D62210A5060048ADC6 = {
 						CreatedOnToolsVersion = 10.1;
@@ -737,8 +744,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SuperSurveyBotMobile/SuperSurveyBotMobile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Sloan;
+				DEVELOPMENT_TEAM = R3UA2Z4ZLH;
 				INFOPLIST_FILE = SuperSurveyBotMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -757,8 +765,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SuperSurveyBotMobile/SuperSurveyBotMobile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Sloan;
+				DEVELOPMENT_TEAM = R3UA2Z4ZLH;
 				INFOPLIST_FILE = SuperSurveyBotMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
